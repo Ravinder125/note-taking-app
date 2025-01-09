@@ -7,4 +7,26 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
+    color: white;
+
+    &::-webkit-scrollbar {
+        display: none; /* Hides the scrollbar */
+        scroll-behavior: smooth;
+        /* scroll-padding: 10px; */
+    }
+    
+}
+
+/* .scrollable-container::-webkit-scrollbar {
+    display: none; /* Hides the scrollbar */
+    /* scroll-behavior: smooth; */
+    /* scroll-padding: 10px; */
+/* } */ */
+
+
+
+
+.scrollable-container {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }

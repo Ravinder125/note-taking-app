@@ -1,0 +1,1 @@
+Build and test the user profile component for the React project, ensuring it integrates seamlessly with the backend API.

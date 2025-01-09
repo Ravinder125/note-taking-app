@@ -1,18 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href = "/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div>hi this is nothing</div>
-    <h1> hey <%= 12+2 %></h1>
 
+<body>
+    <div class="main p-4  w-full min-h-screen bg-zinc-900">
+        <form class="form my-3 flex flex-col mx-auto p-2 gap-1 rounded-lg placeholder:outline-none"
+            action="/create-task" method="post">
+            <div class="space-y-2">
+                <input type="text" name="title" placeholder="Title goes here..."
+                    class="text-white p-3 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+                    required>
+                <textarea name="description" placeholder="Write your task details here..."
+                    class="text-white scrollable-container p-3 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none w-full h-32"
+                    required></textarea>
+            </div>
+
+            <button type="submit"
+                class="text-white font-bold bg-blue-600  rounded-lg p-2 md:w-[110px] hover:bg-blue-700">Create
+                Task</button>
+        </form>
+        <div
+            class="tasks grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 my-3  w-full overflow-auto max-h-[50vh] items-center content">
+
+            <% if (files.length> 0) { %>
+                <% files.forEach((file)=> { %>
+                    <% const title = file.split('-').join(' ').replace('.txt', '' ) %>
+                    <div class="task h-[100px] p-[10px] bg-gray-800 rounded-lg shadow-lg">
+                        <h1 class="title font-bold text-xl text-white overflow-hidden text-ellipsis whitespace-nowrap h-[40%] w-full">
+                            <%= title%>
+                        </h1>
+                        <a href="/task/<%= title %>" class="text-sm text-blue-300 hover:text-blue-400 cursor-pointer">
+                            Read more
+                        </a>
+                    </div>
+                    <% }) %>
+                        <% } else { %>
+                            <div class="task text-gray-400 p-4 bg-gray-800 rounded-lg shadow-lg">
+                                No tasks are added yet.
+                            </div>
+                            <% } %>
+
+        </div>
+    </div>
 
     <script src="/javascripts/script.js"></script>
+
 </body>
+
 </html>
-
-
