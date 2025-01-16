@@ -1,5 +1,22 @@
 .env
 node_modules/
-package-lock.json/
-package.json/
+package-lock.json
+package.json
+files/
+
+
+
+# Ignore environment variables
+.env
+
+# Ignore node modules
+node_modules/
+
+# Ignore package-lock.json
+package-lock.json
+
+# Ignore package.json (not usually recommended unless intentional)
+package.json
+
+# Ignore files directory
 files/
