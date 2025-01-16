@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const fs = require('fs');
+const { render } = require('ejs');
 
 // View Engine
 app.set('view engine', 'ejs');
@@ -17,12 +18,27 @@ app.get('/', (req, res) => {
     fs.readdir('./files', (err, files) => {
         if (err) {
             console.log(err);
-             res.render('index', { files: [] }); // Render with an empty list on error
+            res.render('index', { files: [] }); // Render with an empty list on error
         }
-        console.log(files);
+        // console.log(files);
         res.render('index', { files }); // Render with file names
     });
 });
+
+
+// Rendering the file.ejs file
+app.get('/file/:filename', (req, res) =>{
+    // console.log(req.params.filename);
+    fs.readFile(`./files/${req.params.filename}`, "utf-8", (err, description)=>{
+        if(err){
+            console.log(`Error reading file${err}`)
+        }
+        const title = req.params.filename.split('-').join(' ').replace('.txt', '');
+        const data = {title, description}
+        res.render('file', {data})
+    })
+})
+
 
 // Handling form submission
 app.post('/create-task', (req, res) => {
@@ -42,7 +58,7 @@ app.post('/create-task', (req, res) => {
         fs.writeFile(`./files/${req.body.title.split(' ').join('-')}.txt`, req.body.description, (err) => {
             if (err) {
                 console.log(err);
-                 res.redirect('/'); // Redirect to the home page on error
+                res.redirect('/'); // Redirect to the home page on error
             }
             res.redirect('/'); // Redirect after successful file creation
         });

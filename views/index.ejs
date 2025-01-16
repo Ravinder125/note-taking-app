@@ -36,7 +36,8 @@
                         <h1 class="title font-bold text-xl text-white overflow-hidden text-ellipsis whitespace-nowrap h-[40%] w-full">
                             <%= title%>
                         </h1>
-                        <a href="/task/<%= title %>" class="text-sm text-blue-300 hover:text-blue-400 cursor-pointer">
+                        <% const href = title.split(' ').join('-') + '.txt' %>
+                        <a href="/file/<%= href %>" class="text-sm text-blue-300 hover:text-blue-400 cursor-pointer">
                             Read more
                         </a>
                     </div>
