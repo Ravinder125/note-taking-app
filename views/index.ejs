@@ -37,9 +37,19 @@
                             <%= title%>
                         </h1>
                         <% const href = title.split(' ').join('-') + '.txt' %>
-                        <a href="/file/<%= href %>" class="text-sm text-blue-300 hover:text-blue-400 cursor-pointer">
-                            Read more
-                        </a>
+                        <div class="flex align-center justify-between">
+                            <a href="/file/<%= href %>" class="text-sm text-center text-blue-300 hover:text-blue-400 cursor-pointer">
+                                Read more
+                            </a>
+                            <div class="flex align-center  gap-2">
+                                <button class="bg-blue-700 rounded-lg px-3 py-2 ">
+                                    <a href="">Edit</a>
+                                </button>
+                                <button class="bg-blue-700 rounded-lg px-3 py-2 ">
+                                    <a href="/delete/<%= href %>">Delete</a>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     <% }) %>
                         <% } else { %>

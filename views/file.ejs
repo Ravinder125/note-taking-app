@@ -25,6 +25,15 @@
                     <p class="description text-gray-300 ">
                       <%= data.description %>  
                     </p>
+                    <div class="flex align-center  gap-2">
+                        <% const href = data.title.split(' ').join('-') + '.txt' %>
+                        <button class="bg-blue-700 rounded-lg px-3 py-2 ">
+                            <a href="">Edit</a>
+                        </button>
+                        <button class="bg-blue-700 rounded-lg px-3 py-2 ">
+                            <a href="/delete/<%= href %>">Delete</a>
+                        </button>
+                    </div>
 
                 </div>
             </div>

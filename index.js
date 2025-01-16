@@ -40,6 +40,17 @@ app.get('/file/:filename', (req, res) =>{
 })
 
 
+// Deleting the file
+app.get('/delete/:filename', (req, res) =>{
+    fs.unlink(`./files/${req.params.filename}`, (err)=>{
+        if(err){
+            console.log(`Error deleting file${err}`);
+            console.log(req.params.filename);
+        }
+        res.redirect('/');
+    })
+})
+
 // Handling form submission
 app.post('/create-task', (req, res) => {
     try {
